@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class BattleShip {
+	private static String[][] battleMap = new String[5][5];
+	private static String userName;
+	private static Scanner scan = new Scanner(System.in);
+	
+	public void initMap() {
+		for (int i=0; i<5; i++) {
+			for (int j=0; j<5; j++) {
+				battleMap[i][j] = "█";
+			}
+		}
+	}
+	
+	public void printMap() {
+		for (int i=0; i<5; i++) {
+			for (int j=0; j<5; j++) {
+				System.out.print(battleMap[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
+	public void placeShipCell(String cellNum) {
+		char firstchar = cellNum.charAt(0);
+		int column = (int) (cellNum.charAt(1));
+		int row = 0;
+		if (firstchar == 'A') {
+			row = 0;
+		} else if (firstchar == 'B') {
+			row = 1;
+		} else if (firstchar == 'C') {
+			row = 2;
+		} else if (firstchar == 'D') {
+			row = 3;
+		} else if (firstchar == 'E') {
+			row = 4;
+		}
+		
+		battleMap[row][column] = "C";
+	}
+	
+	public static void main(String[] args) {
+		String position;
+		
+		BattleShip map = new BattleShip();
+		map.initMap();
+		
+		System.out.println("What is your first name?");
+		userName = scan.next();
+		System.out.println("Place your ships " + userName);
+		System.out.println("You have two cruisers that are both of length 3.");
+		
+		for (int shipNum=0; shipNum<2; shipNum++) {
+			System.out.println("Place your ship number " + (shipNum+1));
+			for (int pos=0; pos<3; pos++) {
+				System.out.println("Enter the row and column (eg. B2):");
+				position = scan.next();
+				map.placeShipCell(position);
+			}
+		}
+		
+		map.printMap();
+	}
+
+}

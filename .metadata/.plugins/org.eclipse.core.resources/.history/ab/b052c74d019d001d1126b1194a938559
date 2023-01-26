@@ -1,0 +1,22 @@
+
+public class BattleShip {
+	private static String[][] battleMap = new String[5][5];
+	
+	public static void initMap() {
+		for (int i=0; i<5; i++) {
+			for (int j=0; j<5; j++) {
+				battleMap[i][j] = "█";
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		initMap();
+		for (int i=0; i<5; i++) {
+			for (int j=0; j<5; j++) {
+				System.out.print(battleMap[i][j]);
+			}
+		}
+	}
+
+}
