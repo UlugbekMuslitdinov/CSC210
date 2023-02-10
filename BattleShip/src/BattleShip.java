@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
-public class BattleShip {
 	private String[][] battleMap = new String[5][5];
 	private String[][] defendMap = new String[5][5];
 	private static Scanner scan = new Scanner(System.in);
-	
-	
+
+
 	public void initMap() {
 		for (int i=0; i<5; i++) {
 			for (int j=0; j<5; j++) {
