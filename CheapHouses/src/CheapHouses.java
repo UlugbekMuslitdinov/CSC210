@@ -29,7 +29,7 @@ import java.util.Scanner;
  */
 
 /**
- * @author User
+ * @author Ulugbek Muslitdinov
  */
 public class CheapHouses {
     private JButton btnSubmit;
@@ -43,6 +43,11 @@ public class CheapHouses {
     private double maxLong;
     private double minLong;
 
+    /**
+     * Creates the GUI and shows it.
+     * The GUI consists of a main frame, a panel with a button and a text field,
+     * and a panel with a graphics panel.
+     */
     public void createAndShowGUI() {
         JFrame mainFrame = new JFrame("Cheap houses");
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -72,6 +77,10 @@ public class CheapHouses {
         graphicsPanel.setSize(586, 500);
         graphicsPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+        /**
+         * Button to submit the file name and price
+         * and draw the houses on the graphics panel
+         */
         JButton buttonSubmit = new JButton("Submit");
         buttonSubmit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -96,6 +105,10 @@ public class CheapHouses {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Opens the file and reads the data
+     * and draws the houses on the graphics panel
+     */
     public void openReadFile() {
         File fileCont = new File(this.fname);
         try {
@@ -123,6 +136,11 @@ public class CheapHouses {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Sets the minimum and maximum latitude and longitude
+     * to draw the houses on the graphics panel
+     */
 
     public void setMinMax() {
         File fileCont = new File(this.fname);
@@ -157,12 +175,23 @@ public class CheapHouses {
         }
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         CheapHouses houses = new CheapHouses();
         houses.createAndShowGUI();
     }
 
+    /**
+     * A panel to draw the houses on
+     */
     private class GPanel extends JPanel {
+        /**
+         * Draws a circle on the panel with given x and y coordinates
+         * @param x
+         * @param y
+         */
         public void pointHouse(double x, double y) {
             Graphics g = getGraphics();
             g.setColor(Color.BLACK);
@@ -170,6 +199,10 @@ public class CheapHouses {
             g.fillOval((int) x, (int) y, 5, 5);
         }
 
+
+        /**
+         * Clears the graphics panel
+         */
         public void clear() {
             Graphics g = getGraphics();
             g.setColor(Color.WHITE);
