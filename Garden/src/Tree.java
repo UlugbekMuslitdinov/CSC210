@@ -4,12 +4,13 @@ public class Tree extends Plant {
 	public Tree(String name) {
 		super(name);
 		this.placePlant();
+		this.type = "tree";
 	}
 	
 	public void grow(int times) {
 		this.grown += times;
-		for (int i = 0; i < this.grown; i++) {
-			this.Map[4][i] = this.symbol;
+		for (int i = 4; i > 3-this.grown; i--) {
+			this.Map[i][2] = this.symbol;
 		}
 	}
 	

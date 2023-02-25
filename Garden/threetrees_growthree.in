@@ -1,0 +1,7 @@
+rows: 2
+cols: 4
+
+plant (0,1) Zucchini
+print
+harvest (0,1)
+PRINT

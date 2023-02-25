@@ -4,6 +4,7 @@ public class Flower extends Plant {
 	public Flower(String name) {
 		super(name);
 		this.placePlant();
+		this.type = "flower";
 	}
 	
 	public void grow(int times) {
