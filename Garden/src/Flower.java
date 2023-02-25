@@ -1,12 +1,22 @@
+/*
+ * This class is a subclass of Plant. It is used to create a flower object.
+ */
 public class Flower extends Plant {
-	
-	
+
+	/**
+	 * Constructor for Flower object
+	 * @param name
+	 */
 	public Flower(String name) {
 		super(name);
 		this.placePlant();
 		this.type = "flower";
 	}
-	
+
+	/**
+	 * Grows the flower a specified number of times.
+	 * @param times
+	 */
 	public void grow(int times) {
 		this.grown += times;
 		int vBottom = 2 - this.grown;
@@ -26,7 +36,10 @@ public class Flower extends Plant {
 			this.Map[2][i] = this.symbol;
 		}
 	}
-	
+
+	/**
+	 * Places the flower in the garden map at a specified location.
+	 */
 	public void placePlant() {
 		this.Map[2][2] = this.symbol;
 	}
