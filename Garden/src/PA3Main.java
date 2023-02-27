@@ -58,9 +58,17 @@ public class PA3Main {
 	                // Parse the row and column from the position string
 	                int row = Character.getNumericValue(position.split(",")[0].charAt(1));
 	                int col = Character.getNumericValue(position.split(",")[1].charAt(0));
-
-	                // Plant the given plant at the specified position
-	                garden.plant(name, row, col);
+	                
+	                if (row >= rows || col >= cols) {
+	                    System.out.println("Can't plant there");
+	                    continue;
+	                } else if (garden.getElement(row, col) != null) {
+	                    System.out.println("Can't plant there");
+	                    continue;
+	                } else {
+	                    // Plant the given plant at the specified position
+	                    garden.plant(name, row, col);
+	                }
 	            }
 
 	            // Grow command
