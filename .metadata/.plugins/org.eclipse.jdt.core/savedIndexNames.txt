@@ -1,9 +1,6 @@
 INDEX VERSION 1.131+C:\Users\User\Desktop\HW\CS210\.metadata\.plugins\org.eclipse.jdt.core
 1865797976.index
-778716030.index
-3763875779.index
-4085178562.index
-173674291.index
-4163541083.index
-1156620399.index
-2917890877.index
+2036274974.index
+3498066710.index
+2420995280.index
+4073504299.index
