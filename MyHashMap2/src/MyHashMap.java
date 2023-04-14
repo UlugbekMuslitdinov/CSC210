@@ -1,3 +1,8 @@
+/**
+ * @author Ulugbek Muslitdinov
+ * @class CSC210 Spring 2023
+ */
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Set;

@@ -13,17 +13,17 @@ public class LinkedList {
         }
     }
 
-    public static void main(String[] args) {
-    	Queue<Integer> queue = new LinkedList<Integer>();
-    	for (int i = 1; i <= 6; i++) {
-    	queue.add(i);
-    	}
-    	for (int i = 0; i < queue.size(); i++) {
-    	System.out.print(queue.remove() + " ");
-    	}
-    	System.out.print(queue);
-    	System.out.println(“ size “ + queue.size());
-    }
+//    public static void main(String[] args) {
+//    	Queue<Integer> queue = new LinkedList<Integer>();
+//    	for (int i = 1; i <= 6; i++) {
+//    	queue.add(i);
+//    	}
+//    	for (int i = 0; i < queue.size(); i++) {
+//    	System.out.print(queue.remove() + " ");
+//    	}
+//    	System.out.print(queue);
+//    	System.out.println(“ size “ + queue.size());
+//    }
 
     public void add(int data) {
         Node newNode = new Node(data);
