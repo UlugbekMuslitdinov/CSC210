@@ -7,9 +7,7 @@ import java.util.ArrayList;
 public class PA11Main {
 
     public static void main(String[] args) {
-        int start = 0;
-        int nodes = 0;
-        int edges = 0;
+        int nodes;
         List<Integer> path = new ArrayList<>();
         String fileName = args[0];
         String command = args[1];
@@ -23,18 +21,16 @@ public class PA11Main {
                 String line = fileReader.nextLine();
                 if (line.charAt(0) != '%') {
                     if (firstLine == false) {
-                        String[] items = line.split(" ");
+                        String[] items = line.split("\\s+");
                         if (items.length == 3) {
-                            start = Integer.parseInt(items[0]);
                             nodes = Integer.parseInt(items[1]);
-                            edges = Integer.parseInt(items[2]);
                             for (int i = 1; i <= nodes; i++) {
                                 path.add(i);
                             }
                             firstLine = true;
                         }
                     } else {
-                        String[] items = line.split(" ");
+                        String[] items = line.split("\\s+");
                         if (items.length == 3) {
                             int u = Integer.parseInt(items[0]);
                             int v = Integer.parseInt(items[1]);
@@ -48,7 +44,7 @@ public class PA11Main {
             if (command.equals("HEURISTIC")) {
                 dg.heuristic(1);
             }
-            if (command.equals("BACKTRACKING")) {
+            if (command.equals("BACKTRACK")) {
                 dg.backtracking(1);
             }
 

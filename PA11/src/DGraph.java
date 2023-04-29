@@ -24,6 +24,16 @@ public class DGraph {
         }
     }
 
+    private class Pair {
+        double cost;
+        Node lastNode;
+
+        Pair(double cost, Node lastNode) {
+            this.cost = cost;
+            this.lastNode = lastNode;
+        }
+    }
+
     public void addNode(int key, int value) {
         nodes.put(key, new Node(key, value));
     }
@@ -100,50 +110,45 @@ public class DGraph {
         LinkedList<Integer> path = new LinkedList<>();
         path.add(startKey);
         Node startNode = nodes.get(startKey);
-        if (startNode == null) {
-            return -1.0;
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.add(startNode);
+        double cost = 0;
+        Node lastNode = null;
+        Pair result = backtrackingHelper(queue, path, cost, lastNode);
+        cost = result.cost;
+        lastNode = result.lastNode;
+        for (Edge e: lastNode.adjList) {
+            if (e.sink.key == startKey) {
+                cost += e.weight;
+                break;
+            }
         }
-        Set<Node> visited = new HashSet<>();
-        visited.add(startNode);
-        double cost = backtracking(startNode, startKey, path, visited);
+        cost = Math.round(cost * 10) / 10.0;
         System.out.println("cost = " + cost + ", visitOrder = " + path);
         return cost;
     }
 
-    public double backtracking(Node current, int startkey, LinkedList<Integer> path, Set<Node> visited) {
-        if (visited.size() == nodes.size()) {
-            for (Edge e : current.adjList) {
-                if (e.sink.key == startkey) {
-                    path.add(startkey);
-                    return e.weight;
-                }
-            }
-        }
-        double minCost = Double.MAX_VALUE;
-        Node minNode = null;
+    private Pair backtrackingHelper(LinkedList<Node> queue, LinkedList<Integer> path, double cost, Node lastNode) {
+        Node current = queue.pollFirst();
+        double minEdgeWeight = Double.MAX_VALUE;
+        Node minEdgeNode = null;
         for (Edge e : current.adjList) {
-            if (!visited.contains(e.sink)) {
-                visited.add(e.sink);
-                if (e.sink.key == startkey) {
-                    path.add(startkey);
-                    return e.weight;
+            if (!path.contains(e.sink.key)) {
+                if (e.weight < minEdgeWeight) {
+                    minEdgeWeight = e.weight;
+                    minEdgeNode = e.sink;
                 }
-                double cost = backtracking(e.sink, startkey, path, visited);
-                if (cost != -1.0) {
-                    cost += e.weight;
-                    if (cost < minCost) {
-                        path.add(e.sink.key);
-                        minCost = cost;
-                        minNode = e.sink;
-                    }
-                }
-                visited.remove(e.sink);
-                path.removeLast();
             }
         }
-        if (minNode != null) {
-            path.add(minNode.key);
+        if (minEdgeNode != null) {
+            queue.add(minEdgeNode);
+            path.add(minEdgeNode.key);
+            cost += minEdgeWeight;
+            lastNode = minEdgeNode;
+            Pair result = backtrackingHelper(queue, path, cost, lastNode);
+            cost = result.cost;
+            lastNode = result.lastNode;
         }
-        return minCost;
+        return new Pair(cost, lastNode);
     }
 }
